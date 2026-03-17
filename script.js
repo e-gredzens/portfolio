@@ -9,6 +9,7 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
+
 /* ============================
    LOGO MODAL
 ============================ */
@@ -29,7 +30,7 @@ function openLogoModal(index) {
 
     setTimeout(() => logoModalImg.classList.add('show'), 20);
 
-    logoModal.style.display = 'flex';
+    logoModal.style.display = 'block';
 }
 
 logoItems.forEach((item, index) => {
@@ -41,9 +42,7 @@ logoModalClose.addEventListener('click', () => {
 });
 
 logoModal.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) {
-        logoModal.style.display = 'none';
-    }
+    if (e.target === logoModal) logoModal.style.display = 'none';
 });
 
 logoModalNext.addEventListener('click', () => {
@@ -55,6 +54,7 @@ logoModalPrev.addEventListener('click', () => {
     logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
     openLogoModal(logoIndex);
 });
+
 
 /* ============================
    ANIMATION MODAL
@@ -86,32 +86,36 @@ function openAnimModal(index) {
     animImage.style.display = 'none';
     animIframe.style.display = 'none';
 
-    if (type === 'html') {
-        const w = animItems[index].getAttribute('data-width');
-        const h = animItems[index].getAttribute('data-height');
+if (type === 'html') {
 
-        animIframe.style.width = w + "px";
-        animIframe.style.height = h + "px";
+    const w = animItems[index].getAttribute('data-width');
+    const h = animItems[index].getAttribute('data-height');
 
-        animIframe.src = src;
-        animIframe.style.display = 'block';
-        setTimeout(() => animIframe.classList.add('show'), 20);
+    animIframe.style.width = w + "px";
+    animIframe.style.height = h + "px";
 
-    } else if (src.endsWith('.mp4')) {
-        animVideo.src = src;
-        animVideo.style.display = 'block';
-        setTimeout(() => {
-            animVideo.classList.add('show');
-            animVideo.play();
-        }, 20);
+    animIframe.src = src;
+    animIframe.style.display = 'block';
+    setTimeout(() => animIframe.classList.add('show'), 20);
 
-    } else {
-        animImage.src = src;
-        animImage.style.display = 'block';
-        setTimeout(() => animImage.classList.add('show'), 20);
-    }
+} else if (src.endsWith('.mp4')) {
 
-    animModal.style.display = 'flex';
+    animVideo.src = src;
+    animVideo.style.display = 'block';
+    setTimeout(() => {
+        animVideo.classList.add('show');
+        animVideo.play();
+    }, 20);
+
+} else {
+
+    animImage.src = src;
+    animImage.style.display = 'block';
+    setTimeout(() => animImage.classList.add('show'), 20);
+
+}
+
+    animModal.style.display = 'block';
 }
 
 animItems.forEach((item, index) => {
@@ -124,7 +128,7 @@ animClose.addEventListener('click', () => {
 });
 
 animModal.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) {
+    if (e.target === animModal) {
         animModal.style.display = 'none';
         animVideo.pause();
     }
@@ -140,12 +144,14 @@ animPrev.addEventListener('click', () => {
     openAnimModal(animIndex);
 });
 
+
 /* ============================
    KEYBOARD NAVIGATION
 ============================ */
 document.addEventListener('keydown', e => {
 
-    if (logoModal.style.display === 'flex') {
+    // Logo modal
+    if (logoModal.style.display === 'block') {
         if (e.key === 'ArrowRight') {
             logoIndex = (logoIndex + 1) % logoItems.length;
             openLogoModal(logoIndex);
@@ -159,7 +165,8 @@ document.addEventListener('keydown', e => {
         }
     }
 
-    if (animModal.style.display === 'flex') {
+    // Animation modal
+    if (animModal.style.display === 'block') {
         if (e.key === 'ArrowRight') {
             animIndex = (animIndex + 1) % animItems.length;
             openAnimModal(animIndex);
@@ -184,12 +191,17 @@ let touchEndX = 0;
 let touchEndY = 0;
 
 function triggerHaptic() {
-    if (navigator.vibrate) navigator.vibrate(10);
+    if (navigator.vibrate) {
+        navigator.vibrate(10); // Android
+    }
+    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.haptic) {
+        try { window.webkit.messageHandlers.haptic.postMessage("light"); } catch(e){}
+    }
 }
 
 function animateSwipe(modal, direction) {
     modal.classList.remove('modal-swipe-left', 'modal-swipe-right', 'modal-swipe-down');
-    void modal.offsetWidth;
+    void modal.offsetWidth; // restart animation
     modal.classList.add(direction);
 }
 
@@ -197,12 +209,13 @@ function handleSwipe() {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
 
-    const modalOpenLogo = logoModal.style.display === 'flex';
-    const modalOpenAnim = animModal.style.display === 'flex';
+    const modalOpenLogo = logoModal.style.display === 'block';
+    const modalOpenAnim = animModal.style.display === 'block';
 
     const activeModal = modalOpenLogo ? logoModal : modalOpenAnim ? animModal : null;
     if (!activeModal) return;
 
+    /* SWIPE DOWN — close modal */
     if (deltaY > 80 && Math.abs(deltaX) < 60) {
         animateSwipe(activeModal, 'modal-swipe-down');
         triggerHaptic();
@@ -213,6 +226,7 @@ function handleSwipe() {
         return;
     }
 
+    /* SWIPE RIGHT — previous */
     if (deltaX > 80 && Math.abs(deltaY) < 60) {
         animateSwipe(activeModal, 'modal-swipe-right');
         triggerHaptic();
@@ -227,6 +241,7 @@ function handleSwipe() {
         }
     }
 
+    /* SWIPE LEFT — next */
     if (deltaX < -80 && Math.abs(deltaY) < 60) {
         animateSwipe(activeModal, 'modal-swipe-left');
         triggerHaptic();
@@ -252,3 +267,5 @@ document.addEventListener('touchend', e => {
     touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
 });
+
+
