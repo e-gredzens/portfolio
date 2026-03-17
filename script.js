@@ -87,9 +87,19 @@ function openAnimModal(index) {
     animIframe.style.display = 'none';
 
     if (type === 'html') {
-        animIframe.src = src;
-        animIframe.style.display = 'block';
-        setTimeout(() => animIframe.classList.add('show'), 20);
+    const w = animItems[index].getAttribute('data-width');
+    const h = animItems[index].getAttribute('data-height');
+
+    // Uzstāda iframe izmēru pēc bannera parametriem
+    animIframe.style.width = w + "px";
+    animIframe.style.height = h + "px";
+
+    animIframe.src = src;
+    animIframe.style.display = 'block';
+
+    setTimeout(() => animIframe.classList.add('show'), 20);
+}
+
 
     } else if (src.endsWith('.mp4')) {
         animVideo.src = src;
