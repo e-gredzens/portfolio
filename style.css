@@ -239,3 +239,13 @@ footer {
 .modal-arrow:hover {
     color: #ccc;
 }
+
+/* Fade animation */
+.modal img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal img.show {
+    opacity: 1;
+}
