@@ -30,7 +30,7 @@ function openLogoModal(index) {
 
     setTimeout(() => logoModalImg.classList.add('show'), 20);
 
-    logoModal.style.display = 'block';
+    logoModal.style.display = 'flex';
 }
 
 logoItems.forEach((item, index) => {
@@ -88,36 +88,32 @@ function openAnimModal(index) {
     animImage.style.display = 'none';
     animIframe.style.display = 'none';
 
-if (type === 'html') {
+    if (type === 'html') {
+        const w = animItems[index].getAttribute('data-width');
+        const h = animItems[index].getAttribute('data-height');
 
-    const w = animItems[index].getAttribute('data-width');
-    const h = animItems[index].getAttribute('data-height');
+        animIframe.style.width = w + "px";
+        animIframe.style.height = h + "px";
 
-    animIframe.style.width = w + "px";
-    animIframe.style.height = h + "px";
+        animIframe.src = src;
+        animIframe.style.display = 'block';
+        setTimeout(() => animIframe.classList.add('show'), 20);
 
-    animIframe.src = src;
-    animIframe.style.display = 'block';
-    setTimeout(() => animIframe.classList.add('show'), 20);
+    } else if (src.endsWith('.mp4')) {
+        animVideo.src = src;
+        animVideo.style.display = 'block';
+        setTimeout(() => {
+            animVideo.classList.add('show');
+            animVideo.play();
+        }, 20);
 
-} else if (src.endsWith('.mp4')) {
+    } else {
+        animImage.src = src;
+        animImage.style.display = 'block';
+        setTimeout(() => animImage.classList.add('show'), 20);
+    }
 
-    animVideo.src = src;
-    animVideo.style.display = 'block';
-    setTimeout(() => {
-        animVideo.classList.add('show');
-        animVideo.play();
-    }, 20);
-
-} else {
-
-    animImage.src = src;
-    animImage.style.display = 'block';
-    setTimeout(() => animImage.classList.add('show'), 20);
-
-}
-
-    animModal.style.display = 'block';
+    animModal.style.display = 'flex';
 }
 
 animItems.forEach((item, index) => {
@@ -152,8 +148,7 @@ animPrev.addEventListener('click', () => {
 ============================ */
 document.addEventListener('keydown', e => {
 
-    // Logo modal
-    if (logoModal.style.display === 'block') {
+    if (logoModal.style.display === 'flex') {
         if (e.key === 'ArrowRight') {
             logoIndex = (logoIndex + 1) % logoItems.length;
             openLogoModal(logoIndex);
@@ -167,8 +162,7 @@ document.addEventListener('keydown', e => {
         }
     }
 
-    // Animation modal
-    if (animModal.style.display === 'block') {
+    if (animModal.style.display === 'flex') {
         if (e.key === 'ArrowRight') {
             animIndex = (animIndex + 1) % animItems.length;
             openAnimModal(animIndex);
@@ -184,6 +178,7 @@ document.addEventListener('keydown', e => {
     }
 });
 
+
 /* ============================
    ADVANCED SWIPE NAVIGATION
 ============================ */
@@ -193,17 +188,12 @@ let touchEndX = 0;
 let touchEndY = 0;
 
 function triggerHaptic() {
-    if (navigator.vibrate) {
-        navigator.vibrate(10); // Android
-    }
-    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.haptic) {
-        try { window.webkit.messageHandlers.haptic.postMessage("light"); } catch(e){}
-    }
+    if (navigator.vibrate) navigator.vibrate(10);
 }
 
 function animateSwipe(modal, direction) {
     modal.classList.remove('modal-swipe-left', 'modal-swipe-right', 'modal-swipe-down');
-    void modal.offsetWidth; // restart animation
+    void modal.offsetWidth;
     modal.classList.add(direction);
 }
 
@@ -211,13 +201,12 @@ function handleSwipe() {
     const deltaX = touchEndX - touchStartX;
     const deltaY = touchEndY - touchStartY;
 
-    const modalOpenLogo = logoModal.style.display === 'block';
-    const modalOpenAnim = animModal.style.display === 'block';
+    const modalOpenLogo = logoModal.style.display === 'flex';
+    const modalOpenAnim = animModal.style.display === 'flex';
 
     const activeModal = modalOpenLogo ? logoModal : modalOpenAnim ? animModal : null;
     if (!activeModal) return;
 
-    /* SWIPE DOWN — close modal */
     if (deltaY > 80 && Math.abs(deltaX) < 60) {
         animateSwipe(activeModal, 'modal-swipe-down');
         triggerHaptic();
@@ -228,7 +217,6 @@ function handleSwipe() {
         return;
     }
 
-    /* SWIPE RIGHT — previous */
     if (deltaX > 80 && Math.abs(deltaY) < 60) {
         animateSwipe(activeModal, 'modal-swipe-right');
         triggerHaptic();
@@ -243,7 +231,6 @@ function handleSwipe() {
         }
     }
 
-    /* SWIPE LEFT — next */
     if (deltaX < -80 && Math.abs(deltaY) < 60) {
         animateSwipe(activeModal, 'modal-swipe-left');
         triggerHaptic();
@@ -269,5 +256,3 @@ document.addEventListener('touchend', e => {
     touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
 });
-
-
