@@ -181,3 +181,91 @@ document.addEventListener('keydown', e => {
         }
     }
 });
+
+/* ============================
+   ADVANCED SWIPE NAVIGATION
+============================ */
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+function triggerHaptic() {
+    if (navigator.vibrate) {
+        navigator.vibrate(10); // Android
+    }
+    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.haptic) {
+        try { window.webkit.messageHandlers.haptic.postMessage("light"); } catch(e){}
+    }
+}
+
+function animateSwipe(modal, direction) {
+    modal.classList.remove('modal-swipe-left', 'modal-swipe-right', 'modal-swipe-down');
+    void modal.offsetWidth; // restart animation
+    modal.classList.add(direction);
+}
+
+function handleSwipe() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    const modalOpenLogo = logoModal.style.display === 'block';
+    const modalOpenAnim = animModal.style.display === 'block';
+
+    const activeModal = modalOpenLogo ? logoModal : modalOpenAnim ? animModal : null;
+    if (!activeModal) return;
+
+    /* SWIPE DOWN — close modal */
+    if (deltaY > 80 && Math.abs(deltaX) < 60) {
+        animateSwipe(activeModal, 'modal-swipe-down');
+        triggerHaptic();
+        setTimeout(() => {
+            activeModal.style.display = 'none';
+            animVideo.pause();
+        }, 200);
+        return;
+    }
+
+    /* SWIPE RIGHT — previous */
+    if (deltaX > 80 && Math.abs(deltaY) < 60) {
+        animateSwipe(activeModal, 'modal-swipe-right');
+        triggerHaptic();
+
+        if (modalOpenLogo) {
+            logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
+            openLogoModal(logoIndex);
+        }
+        if (modalOpenAnim) {
+            animIndex = (animIndex - 1 + animItems.length) % animItems.length;
+            openAnimModal(animIndex);
+        }
+    }
+
+    /* SWIPE LEFT — next */
+    if (deltaX < -80 && Math.abs(deltaY) < 60) {
+        animateSwipe(activeModal, 'modal-swipe-left');
+        triggerHaptic();
+
+        if (modalOpenLogo) {
+            logoIndex = (logoIndex + 1) % logoItems.length;
+            openLogoModal(logoIndex);
+        }
+        if (modalOpenAnim) {
+            animIndex = (animIndex + 1) % animItems.length;
+            openAnimModal(animIndex);
+        }
+    }
+}
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+});
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+});
+
+
