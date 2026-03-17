@@ -1,4 +1,6 @@
-// Smooth scroll
+/* ============================
+   Smooth scroll navigation
+============================ */
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
@@ -7,103 +9,99 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modal-img');
-const modalClose = document.getElementById('modal-close');
-const modalPrev = document.getElementById('modal-prev');
-const modalNext = document.getElementById('modal-next');
+
+/* ============================
+   LOGO MODAL
+============================ */
+const logoModal = document.getElementById('modal');
+const logoModalImg = document.getElementById('modal-img');
+const logoModalClose = document.getElementById('modal-close');
+const logoModalPrev = document.getElementById('modal-prev');
+const logoModalNext = document.getElementById('modal-next');
 
 const logoItems = Array.from(document.querySelectorAll('.logo-item'));
-let currentIndex = 0;
+let logoIndex = 0;
 
-function openModal(index) {
-    currentIndex = index;
+function openLogoModal(index) {
+    logoIndex = index;
 
-    // Noņem iepriekšējo animācijas klasi
-    modalImg.classList.remove('show');
+    logoModalImg.classList.remove('show');
+    logoModalImg.src = logoItems[index].getAttribute('data-full');
 
-    // Ielādē jauno attēlu
-    modalImg.src = logoItems[index].getAttribute('data-full');
+    setTimeout(() => logoModalImg.classList.add('show'), 20);
 
-    // Pievieno animāciju pēc nelielas pauzes
-    setTimeout(() => {
-        modalImg.classList.add('show');
-    }, 20);
-
-    modal.style.display = 'block';
+    logoModal.style.display = 'block';
 }
 
 logoItems.forEach((item, index) => {
-    item.addEventListener('click', () => openModal(index));
+    item.addEventListener('click', () => openLogoModal(index));
 });
 
-modalClose.addEventListener('click', () => {
-    modal.style.display = 'none';
+logoModalClose.addEventListener('click', () => {
+    logoModal.style.display = 'none';
 });
 
-modal.addEventListener('click', e => {
-    if (e.target === modal) modal.style.display = 'none';
+logoModal.addEventListener('click', e => {
+    if (e.target === logoModal) logoModal.style.display = 'none';
 });
 
-// Next / Prev buttons
-modalNext.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % logoItems.length;
-    openModal(currentIndex);
+logoModalNext.addEventListener('click', () => {
+    logoIndex = (logoIndex + 1) % logoItems.length;
+    openLogoModal(logoIndex);
 });
 
-modalPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + logoItems.length) % logoItems.length;
-    openModal(currentIndex);
+logoModalPrev.addEventListener('click', () => {
+    logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
+    openLogoModal(logoIndex);
 });
 
-// Keyboard navigation
-document.addEventListener('keydown', e => {
-    if (modal.style.display !== 'block') return;
 
-    if (e.key === 'ArrowRight') {
-        currentIndex = (currentIndex + 1) % logoItems.length;
-        openModal(currentIndex);
-    }
-
-    if (e.key === 'ArrowLeft') {
-        currentIndex = (currentIndex - 1 + logoItems.length) % logoItems.length;
-        openModal(currentIndex);
-    }
-
-    if (e.key === 'Escape') {
-        modal.style.display = 'none';
-    }
-});
-
+/* ============================
+   ANIMATION MODAL
+============================ */
 const animModal = document.getElementById('anim-modal');
 const animClose = document.getElementById('anim-close');
 const animPrev = document.getElementById('anim-prev');
 const animNext = document.getElementById('anim-next');
+
 const animVideo = document.getElementById('anim-video');
 const animImage = document.getElementById('anim-image');
+const animIframe = document.getElementById('anim-iframe');
 
 const animItems = Array.from(document.querySelectorAll('.anim-item'));
 let animIndex = 0;
 
 function openAnimModal(index) {
     animIndex = index;
+
     const src = animItems[index].getAttribute('data-full');
+    const type = animItems[index].getAttribute('data-type') || '';
 
     animVideo.pause();
     animVideo.classList.remove('show');
     animImage.classList.remove('show');
+    animIframe.classList.remove('show');
 
-    if (src.endsWith('.mp4')) {
+    animVideo.style.display = 'none';
+    animImage.style.display = 'none';
+    animIframe.style.display = 'none';
+
+    if (type === 'html') {
+        animIframe.src = src;
+        animIframe.style.display = 'block';
+        setTimeout(() => animIframe.classList.add('show'), 20);
+
+    } else if (src.endsWith('.mp4')) {
         animVideo.src = src;
         animVideo.style.display = 'block';
-        animImage.style.display = 'none';
+        setTimeout(() => {
+            animVideo.classList.add('show');
+            animVideo.play();
+        }, 20);
 
-        setTimeout(() => animVideo.classList.add('show'), 20);
     } else {
         animImage.src = src;
         animImage.style.display = 'block';
-        animVideo.style.display = 'none';
-
         setTimeout(() => animImage.classList.add('show'), 20);
     }
 
@@ -126,7 +124,6 @@ animModal.addEventListener('click', e => {
     }
 });
 
-// Next / Prev
 animNext.addEventListener('click', () => {
     animIndex = (animIndex + 1) % animItems.length;
     openAnimModal(animIndex);
@@ -137,23 +134,40 @@ animPrev.addEventListener('click', () => {
     openAnimModal(animIndex);
 });
 
-// Keyboard navigation
+
+/* ============================
+   KEYBOARD NAVIGATION
+============================ */
 document.addEventListener('keydown', e => {
-    if (animModal.style.display !== 'block') return;
 
-    if (e.key === 'ArrowRight') {
-        animIndex = (animIndex + 1) % animItems.length;
-        openAnimModal(animIndex);
+    // Logo modal
+    if (logoModal.style.display === 'block') {
+        if (e.key === 'ArrowRight') {
+            logoIndex = (logoIndex + 1) % logoItems.length;
+            openLogoModal(logoIndex);
+        }
+        if (e.key === 'ArrowLeft') {
+            logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
+            openLogoModal(logoIndex);
+        }
+        if (e.key === 'Escape') {
+            logoModal.style.display = 'none';
+        }
     }
 
-    if (e.key === 'ArrowLeft') {
-        animIndex = (animIndex - 1 + animItems.length) % animItems.length;
-        openAnimModal(animIndex);
-    }
-
-    if (e.key === 'Escape') {
-        animModal.style.display = 'none';
-        animVideo.pause();
+    // Animation modal
+    if (animModal.style.display === 'block') {
+        if (e.key === 'ArrowRight') {
+            animIndex = (animIndex + 1) % animItems.length;
+            openAnimModal(animIndex);
+        }
+        if (e.key === 'ArrowLeft') {
+            animIndex = (animIndex - 1 + animItems.length) % animItems.length;
+            openAnimModal(animIndex);
+        }
+        if (e.key === 'Escape') {
+            animModal.style.display = 'none';
+            animVideo.pause();
+        }
     }
 });
-
