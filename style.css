@@ -82,3 +82,37 @@ footer {
     background: #fff;
     border-top: 1px solid #ddd;
 }
+
+/* Top contact bar */
+.topbar {
+    background: #2b2b2b;
+    color: #fff;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.topbar-content {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.topbar-content span,
+.topbar-content a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.topbar-content a:hover {
+    text-decoration: underline;
+}
+
+.topbar i {
+    font-size: 14px;
+}
