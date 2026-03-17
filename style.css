@@ -202,14 +202,13 @@ h2 {
    UNIVERSAL MODAL BASE
 ============================ */
 .modal {
-    display: none;                 /* slēgts pēc noklusējuma */
     position: fixed;
     z-index: 9999;
     inset: 0;
     background: rgba(0,0,0,0.85);
 
-    /* centrēšana */
-    display: flex;
+    display: none; /* sākumā slēgts */
+
     justify-content: center;
     align-items: center;
 
@@ -251,6 +250,13 @@ h2 {
 /* ============================
    LOGO MODAL CONTENT
 ============================ */
+.modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 #modal-img {
     max-width: 90%;
     max-height: 80vh;
