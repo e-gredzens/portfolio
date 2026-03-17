@@ -320,3 +320,17 @@ footer {
     background: #fff;
     border-top: 1px solid #ddd;
 }
+
+#anim-iframe {
+    max-width: 90%;
+    max-height: 80vh;
+    border: none;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#anim-iframe.show {
+    display: block;
+    opacity: 1;
+}
