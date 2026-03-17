@@ -212,7 +212,9 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 40px;
+    box-sizing: border-box;
 }
 
 /* Close button */
@@ -244,6 +246,60 @@ h2 {
 
 .modal-arrow:hover {
     color: #ccc;
+}
+
+/* ============================
+   LOGO MODAL CONTENT
+============================ */
+#modal-img {
+    max-width: 90%;
+    max-height: 80vh;
+    margin: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#modal-img.show {
+    opacity: 1;
+}
+
+/* ============================
+   ANIMATION MODAL CONTENT
+============================ */
+.anim-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+/* Video, image, iframe — visi centrējas vienādi */
+.anim-modal-content video,
+.anim-modal-content img,
+#anim-iframe {
+    max-width: 90%;
+    max-height: 80vh;
+
+    margin: auto;
+    display: none;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Fade-in animācija */
+.anim-modal-content video.show,
+.anim-modal-content img.show,
+#anim-iframe.show {
+    display: block;
+    opacity: 1;
+}
+
+/* HTML5 banneru iframe */
+#anim-iframe {
+    border: none;
 }
 
 /* ============================
@@ -293,56 +349,6 @@ h2 {
 
 .anim-item:hover .play-icon {
     background: rgba(255,255,255,1);
-}
-
-/* ============================
-   LOGO MODAL CONTENT
-============================ */
-#modal-img {
-    max-width: 90%;
-    max-height: 80vh;
-    margin: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-#modal-img.show {
-    opacity: 1;
-}
-
-/* ============================
-   ANIMATION MODAL CONTENT
-============================ */
-.anim-modal-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-/* Video, image, iframe — visi centrējas vienādi */
-.anim-modal-content video,
-.anim-modal-content img,
-#anim-iframe {
-    max-width: 90%;
-    max-height: 80vh;
-    margin: auto;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* Fade-in animācija */
-.anim-modal-content video.show,
-.anim-modal-content img.show,
-#anim-iframe.show {
-    display: block;
-    opacity: 1;
-}
-
-/* HTML5 banneru iframe */
-#anim-iframe {
-    border: none;
 }
 
 /* ============================
