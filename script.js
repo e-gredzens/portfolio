@@ -42,7 +42,7 @@ logoModalClose.addEventListener('click', () => {
 });
 
 logoModal.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) logoModal.style.display = 'none';
+    if (e.target === logoModal) logoModal.style.display = 'none';
 });
 
 logoModalNext.addEventListener('click', () => {
@@ -128,7 +128,7 @@ animClose.addEventListener('click', () => {
 });
 
 animModal.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) {
+    if (e.target === logoModal) {
         animModal.style.display = 'none';
         animVideo.pause();
     }
