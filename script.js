@@ -56,7 +56,6 @@ logoModalPrev.addEventListener('click', () => {
     openLogoModal(logoIndex);
 });
 
-
 /* ============================
    ANIMATION MODAL
 ============================ */
@@ -141,7 +140,6 @@ animPrev.addEventListener('click', () => {
     openAnimModal(animIndex);
 });
 
-
 /* ============================
    KEYBOARD NAVIGATION
 ============================ */
@@ -176,7 +174,6 @@ document.addEventListener('keydown', e => {
         }
     }
 });
-
 
 /* ============================
    ADVANCED SWIPE NAVIGATION
