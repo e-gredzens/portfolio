@@ -216,3 +216,26 @@ footer {
 .about-text {
     flex: 1;
 }
+
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 50px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    transform: translateY(-50%);
+}
+
+#modal-prev {
+    left: 20px;
+}
+
+#modal-next {
+    right: 20px;
+}
+
+.modal-arrow:hover {
+    color: #ccc;
+}
