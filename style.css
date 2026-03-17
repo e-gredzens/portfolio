@@ -361,3 +361,45 @@ footer {
     background: #fff;
     border-top: 1px solid #ddd;
 }
+
+/* ============================
+Swipe animācija
+============================ */
+.modal-swipe-left {
+    animation: swipeLeft 0.25s ease;
+}
+.modal-swipe-right {
+    animation: swipeRight 0.25s ease;
+}
+.modal-swipe-down {
+    animation: swipeDown 0.25s ease;
+}
+
+@keyframes swipeLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-80px); }
+}
+@keyframes swipeRight {
+    from { transform: translateX(0); }
+    to { transform: translateX(80px); }
+}
+@keyframes swipeDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(120px); }
+}
+
+/* ============================
+Swipe indikators (mazs gradienta laukums apakšā)
+============================ */
+.swipe-indicator {
+    position: absolute;
+    bottom: 25px;
+    width: 60px;
+    height: 6px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 3px;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
