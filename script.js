@@ -86,7 +86,8 @@ function openAnimModal(index) {
     animImage.style.display = 'none';
     animIframe.style.display = 'none';
 
-    if (type === 'html') {
+   if (type === 'html') {
+
     const w = animItems[index].getAttribute('data-width');
     const h = animItems[index].getAttribute('data-height');
 
