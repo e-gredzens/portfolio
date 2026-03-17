@@ -202,19 +202,17 @@ h2 {
    UNIVERSAL MODAL BASE
 ============================ */
 .modal {
-    display: none;
+    display: none;                 /* slēgts pēc noklusējuma */
     position: fixed;
     z-index: 9999;
-    padding-top: 60px;
     inset: 0;
     background: rgba(0,0,0,0.85);
-}
 
-.modal img,
-.anim-modal-content video,
-.anim-modal-content img,
-#anim-iframe {
-    margin: auto;
+    /* centrēšana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
 }
 
 /* Close button */
@@ -226,6 +224,7 @@ h2 {
     font-size: 40px;
     color: #fff;
     cursor: pointer;
+    user-select: none;
 }
 
 /* Arrows */
@@ -245,22 +244,6 @@ h2 {
 
 .modal-arrow:hover {
     color: #ccc;
-}
-
-/* Fade animation */
-.modal img,
-.anim-modal-content video,
-.anim-modal-content img,
-#anim-iframe {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal img.show,
-.anim-modal-content video.show,
-.anim-modal-content img.show,
-#anim-iframe.show {
-    opacity: 1;
 }
 
 /* ============================
@@ -313,28 +296,53 @@ h2 {
 }
 
 /* ============================
+   LOGO MODAL CONTENT
+============================ */
+#modal-img {
+    max-width: 90%;
+    max-height: 80vh;
+    margin: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#modal-img.show {
+    opacity: 1;
+}
+
+/* ============================
    ANIMATION MODAL CONTENT
 ============================ */
 .anim-modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100%;
-}
 
+/* Video, image, iframe — visi centrējas vienādi */
 .anim-modal-content video,
-.anim-modal-content img {
-    max-width: 90%;
-    max-height: 80vh;
-    display: none;
-    margin: auto;
-}
-
+.anim-modal-content img,
 #anim-iframe {
     max-width: 90%;
     max-height: 80vh;
-    border: none;
+    margin: auto;
     display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Fade-in animācija */
+.anim-modal-content video.show,
+.anim-modal-content img.show,
+#anim-iframe.show {
+    display: block;
+    opacity: 1;
+}
+
+/* HTML5 banneru iframe */
+#anim-iframe {
+    border: none;
 }
 
 /* ============================
