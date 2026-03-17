@@ -20,7 +20,6 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
-/* Top contact bar */
 .topbar {
     background: #2b2b2b;
     color: #fff;
@@ -47,10 +46,6 @@ header {
 
 .topbar-content a:hover {
     text-decoration: underline;
-}
-
-.topbar i {
-    font-size: 14px;
 }
 
 /* ============================
@@ -90,10 +85,6 @@ h2 {
 /* ============================
    ABOUT SECTION
 ============================ */
-#about {
-    margin-top: 45px;
-}
-
 .about-wrapper {
     display: flex;
     align-items: center;
@@ -114,11 +105,6 @@ h2 {
     flex: 1;
 }
 
-#about p {
-    font-size: 18px;
-    line-height: 1.6;
-}
-
 .cv-button {
     display: inline-block;
     margin-top: 15px;
@@ -135,11 +121,6 @@ h2 {
     background: #555;
 }
 
-.cv-button i {
-    margin-right: 8px;
-    font-size: 16px;
-}
-
 /* ============================
    GRID LAYOUTS
 ============================ */
@@ -149,40 +130,16 @@ h2 {
     gap: 20px;
 }
 
-/* Desktop — 5 logos per row */
 @media (min-width: 1200px) {
     #logos .grid {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
-.grid img,
-.grid video {
+.grid img {
     width: 100%;
     border-radius: 6px;
     background: #eee;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.card p {
-    margin: 0;
-    font-size: 14px;
-    text-align: center;
-    color: #444;
-}
-
-.card a {
-    text-align: center;
-    padding: 10px;
-    background: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
 }
 
 /* ============================
@@ -203,11 +160,11 @@ h2 {
 ============================ */
 .modal {
     position: fixed;
-    z-index: 9999;
     inset: 0;
+    z-index: 9999;
     background: rgba(0,0,0,0.85);
 
-    display: none; /* sākumā slēgts */
+    display: none; /* ← svarīgi */
 
     justify-content: center;
     align-items: center;
@@ -225,7 +182,6 @@ h2 {
     font-size: 40px;
     color: #fff;
     cursor: pointer;
-    user-select: none;
 }
 
 /* Arrows */
@@ -243,10 +199,6 @@ h2 {
 #modal-prev, #anim-prev { left: 20px; }
 #modal-next, #anim-next { right: 20px; }
 
-.modal-arrow:hover {
-    color: #ccc;
-}
-
 /* ============================
    LOGO MODAL CONTENT
 ============================ */
@@ -255,7 +207,7 @@ h2 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 100%; /* ← vertikālā centrēšana */
 }
 
 #modal-img {
@@ -282,21 +234,17 @@ h2 {
     height: 100%;
 }
 
-/* Video, image, iframe — visi centrējas vienādi */
 .anim-modal-content video,
 .anim-modal-content img,
 #anim-iframe {
     max-width: 90%;
     max-height: 80vh;
-
     margin: auto;
     display: none;
-
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* Fade-in animācija */
 .anim-modal-content video.show,
 .anim-modal-content img.show,
 #anim-iframe.show {
@@ -304,99 +252,23 @@ h2 {
     opacity: 1;
 }
 
-/* HTML5 banneru iframe */
 #anim-iframe {
     border: none;
 }
 
 /* ============================
-   ANIMATION GRID
+   SWIPE ANIMATIONS
 ============================ */
-.animation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
+.modal-swipe-left { animation: swipeLeft 0.25s ease; }
+.modal-swipe-right { animation: swipeRight 0.25s ease; }
+.modal-swipe-down { animation: swipeDown 0.25s ease; }
 
-.anim-item {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.anim-item img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    transition: filter 0.3s ease;
-}
-
-.anim-item:hover img {
-    filter: brightness(0.6);
-}
-
-/* Play overlay */
-.play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.play-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255,255,255,0.85);
-    border-radius: 50%;
-    clip-path: polygon(35% 25%, 75% 50%, 35% 75%);
-    transition: background 0.3s ease;
-}
-
-.anim-item:hover .play-icon {
-    background: rgba(255,255,255,1);
-}
+@keyframes swipeLeft { from { transform: translateX(0); } to { transform: translateX(-80px); } }
+@keyframes swipeRight { from { transform: translateX(0); } to { transform: translateX(80px); } }
+@keyframes swipeDown { from { transform: translateY(0); } to { transform: translateY(120px); } }
 
 /* ============================
-   FOOTER
-============================ */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-}
-
-/* ============================
-Swipe animācija
-============================ */
-.modal-swipe-left {
-    animation: swipeLeft 0.25s ease;
-}
-.modal-swipe-right {
-    animation: swipeRight 0.25s ease;
-}
-.modal-swipe-down {
-    animation: swipeDown 0.25s ease;
-}
-
-@keyframes swipeLeft {
-    from { transform: translateX(0); }
-    to { transform: translateX(-80px); }
-}
-@keyframes swipeRight {
-    from { transform: translateX(0); }
-    to { transform: translateX(80px); }
-}
-@keyframes swipeDown {
-    from { transform: translateY(0); }
-    to { transform: translateY(120px); }
-}
-
-/* ============================
-Swipe indikators (mazs gradienta laukums apakšā)
+   SWIPE INDICATOR
 ============================ */
 .swipe-indicator {
     position: absolute;
@@ -405,8 +277,7 @@ Swipe indikators (mazs gradienta laukums apakšā)
     height: 6px;
     background: rgba(255,255,255,0.4);
     border-radius: 3px;
-    margin: auto;
     left: 0;
     right: 0;
+    margin: auto;
 }
-
