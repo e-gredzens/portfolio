@@ -81,6 +81,59 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* About section */
+#about {
+    margin-top: 45px;
+}
+
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.about-photo {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#about p {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.cv-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 22px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.25s ease;
+}
+
+.cv-button:hover {
+    background: #555;
+}
+
+.cv-button i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+
 /* Default (mobile/tablet) — automātiski pielāgojas */
 .grid {
     display: grid;
@@ -124,14 +177,6 @@ h2 {
     border-radius: 4px;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-}
-
 /* Hover efekts */
 .logo-item img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -172,59 +217,6 @@ footer {
     cursor: pointer;
 }
 
-/* About section */
-#about {
-    margin-top: 50px;
-}
-
-.about-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.about-photo {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 8px solid #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-#about p {
-    flex: 1;
-    font-size: 18px;
-    line-height: 1.6;
-    max-width: 650px;
-}
-
-.cv-button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 22px;
-    background: #333;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: background 0.25s ease;
-}
-
-.cv-button:hover {
-    background: #555;
-}
-
-.cv-button i {
-    margin-right: 8px;
-    font-size: 16px;
-}
-
-.about-text {
-    flex: 1;
-}
-
 .modal-arrow {
     position: absolute;
     top: 50%;
@@ -256,4 +248,12 @@ footer {
 
 .modal img.show {
     opacity: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: #fff;
+    border-top: 1px solid #ddd;
 }
