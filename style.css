@@ -4,12 +4,14 @@ html, body {
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     background: #f7f7f7;
     color: #222;
 }
 
+/* ============================
+   HEADER & TOPBAR
+============================ */
 header {
     text-align: center;
     padding: 0;
@@ -22,7 +24,6 @@ header {
 .topbar {
     background: #2b2b2b;
     color: #fff;
-    margin: 0;
     padding: 8px 0;
     font-size: 14px;
 }
@@ -36,7 +37,6 @@ header {
     padding: 0 20px;
 }
 
-.topbar-content span,
 .topbar-content a {
     display: flex;
     align-items: center;
@@ -53,6 +53,9 @@ header {
     font-size: 14px;
 }
 
+/* ============================
+   NAVIGATION
+============================ */
 nav ul {
     display: flex;
     justify-content: center;
@@ -70,6 +73,9 @@ nav a {
     font-weight: bold;
 }
 
+/* ============================
+   MAIN LAYOUT
+============================ */
 main {
     max-width: 1100px;
     margin: auto;
@@ -81,7 +87,9 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* About section */
+/* ============================
+   ABOUT SECTION
+============================ */
 #about {
     margin-top: 45px;
 }
@@ -102,8 +110,11 @@ h2 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-#about p {
+.about-text {
     flex: 1;
+}
+
+#about p {
     font-size: 18px;
     line-height: 1.6;
 }
@@ -129,19 +140,16 @@ h2 {
     font-size: 16px;
 }
 
-.about-text {
-    flex: 1;
-}
-
-
-/* Default (mobile/tablet) — automātiski pielāgojas */
+/* ============================
+   GRID LAYOUTS
+============================ */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
 }
 
-/* Desktop — tieši 5 kolonnas */
+/* Desktop — 5 logos per row */
 @media (min-width: 1200px) {
     #logos .grid {
         grid-template-columns: repeat(5, 1fr);
@@ -177,7 +185,9 @@ h2 {
     border-radius: 4px;
 }
 
-/* Hover efekts */
+/* ============================
+   LOGO HOVER EFFECT
+============================ */
 .logo-item img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
@@ -188,27 +198,21 @@ h2 {
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* Modal */
+/* ============================
+   UNIVERSAL MODAL BASE
+============================ */
 .modal {
     display: none;
     position: fixed;
     z-index: 9999;
     padding-top: 60px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.85);
 }
 
-.modal img {
-    display: block;
-    margin: auto;
-    max-width: 90%;
-    max-height: 80vh;
-}
-
-#modal-close {
+/* Close button */
+#modal-close,
+#anim-close {
     position: absolute;
     top: 20px;
     right: 35px;
@@ -217,6 +221,7 @@ h2 {
     cursor: pointer;
 }
 
+/* Arrows */
 .modal-arrow {
     position: absolute;
     top: 50%;
@@ -228,28 +233,32 @@ h2 {
     transform: translateY(-50%);
 }
 
-#modal-prev {
-    left: 20px;
-}
-
-#modal-next {
-    right: 20px;
-}
+#modal-prev, #anim-prev { left: 20px; }
+#modal-next, #anim-next { right: 20px; }
 
 .modal-arrow:hover {
     color: #ccc;
 }
 
 /* Fade animation */
-.modal img {
+.modal img,
+.anim-modal-content video,
+.anim-modal-content img,
+#anim-iframe {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.modal img.show {
+.modal img.show,
+.anim-modal-content video.show,
+.anim-modal-content img.show,
+#anim-iframe.show {
     opacity: 1;
 }
 
+/* ============================
+   ANIMATION GRID
+============================ */
 .animation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -270,12 +279,11 @@ h2 {
     transition: filter 0.3s ease;
 }
 
-/* Hover tumšošana */
 .anim-item:hover img {
     filter: brightness(0.6);
 }
 
-/* Play pogas overlay */
+/* Play overlay */
 .play-overlay {
     position: absolute;
     inset: 0;
@@ -297,28 +305,15 @@ h2 {
     background: rgba(255,255,255,1);
 }
 
+/* ============================
+   ANIMATION MODAL CONTENT
+============================ */
 .anim-modal-content video,
 .anim-modal-content img {
     max-width: 90%;
     max-height: 80vh;
     display: none;
     margin: auto;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.anim-modal-content video.show,
-.anim-modal-content img.show {
-    display: block;
-    opacity: 1;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    background: #fff;
-    border-top: 1px solid #ddd;
 }
 
 #anim-iframe {
@@ -326,11 +321,15 @@ footer {
     max-height: 80vh;
     border: none;
     display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
-#anim-iframe.show {
-    display: block;
-    opacity: 1;
+/* ============================
+   FOOTER
+============================ */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: #fff;
+    border-top: 1px solid #ddd;
 }
