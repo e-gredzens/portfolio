@@ -81,10 +81,18 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Default (mobile/tablet) — automātiski pielāgojas */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
+}
+
+/* Desktop — tieši 5 kolonnas */
+@media (min-width: 1200px) {
+    #logos .grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 .grid img,
