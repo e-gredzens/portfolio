@@ -156,3 +156,31 @@ footer {
     color: #fff;
     cursor: pointer;
 }
+
+/* About section */
+#about {
+    margin-top: 50px;
+}
+
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.about-photo {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#about p {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 650px;
+}
