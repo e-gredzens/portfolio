@@ -210,6 +210,13 @@ h2 {
     background: rgba(0,0,0,0.85);
 }
 
+.modal img,
+.anim-modal-content video,
+.anim-modal-content img,
+#anim-iframe {
+    margin: auto;
+}
+
 /* Close button */
 #modal-close,
 #anim-close {
@@ -308,6 +315,13 @@ h2 {
 /* ============================
    ANIMATION MODAL CONTENT
 ============================ */
+.anim-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .anim-modal-content video,
 .anim-modal-content img {
     max-width: 90%;
