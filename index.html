@@ -3,80 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edijs — Portfolio</title>
+    <title>Edijs Gredzens — Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <h1>Edijs — HTML5, 2D animācijas un dizains</h1>
-    <nav>
-        <a href="#html5">HTML5 Baneri</a>
-        <a href="#anim">2D Animācijas</a>
-        <a href="#logo">Logo Dizains</a>
-        <a href="#web">Web Dizains</a>
-    </nav>
+    <h1>Edijs Gredzens</h1>
+    <p>Dizainers • Maketētājs • Animators</p>
 </header>
+
+<nav>
+    <ul>
+        <li><a href="#logos">Logo dizains</a></li>
+        <li><a href="#web">Web dizains</a></li>
+        <li><a href="#html5">HTML5 baneri</a></li>
+        <li><a href="#animation">2D animācija</a></li>
+        <li><a href="#banners">GIF / Video baneri</a></li>
+    </ul>
+</nav>
 
 <main>
 
-<section id="html5">
-    <h2>HTML5 Baneri</h2>
+<section id="logos">
+    <h2>Logo dizains</h2>
     <div class="grid">
-        <div class="item">
-            <iframe src="html5-banners/demo-banner/index.html"></iframe>
-            <p>Demo HTML5 baneris</p>
-        </div>
-    </div>
-</section>
-
-<section id="anim">
-    <h2>2D Animācijas</h2>
-    <div class="grid">
-        <div class="item">
-            <video controls>
-                <source src="assets/videos/anim-demo.mp4" type="video/mp4">
-            </video>
-            <p>Demo animācija</p>
-        </div>
-    </div>
-</section>
-
-<section id="logo">
-    <h2>Logo Dizains</h2>
-    <div class="grid">
-        <img src="assets/images/logo-demo1.svg">
-        <img src="assets/images/logo-demo2.svg">
+        <img src="assets/images/logo-demo1.svg" alt="Logo demo 1">
+        <img src="assets/images/logo-demo2.svg" alt="Logo demo 2">
     </div>
 </section>
 
 <section id="web">
-    <h2>Web Dizains</h2>
+    <h2>Web dizains</h2>
     <div class="grid">
-
-        <div class="item">
-            <img src="web-design/project1/screenshot1.jpg">
-            <h3>Coffee Landing Page</h3>
-            <p>Paveiktais: dizains + kodēšana</p>
-            <a href="https://example.com/coffee-demo" target="_blank">Apskatīt</a>
+        <div class="card">
+            <img src="web-design/project1/screenshot1.jpg" alt="Project 1">
+            <a href="web-design/project1/link.txt" target="_blank">Apskatīt projektu</a>
         </div>
 
-        <div class="item">
-            <img src="web-design/project2/screenshot1.jpg">
-            <h3>Portfolio Website</h3>
-            <p>Paveiktais: tikai dizains</p>
-            <a href="https://example.com/portfolio-demo" target="_blank">Apskatīt</a>
+        <div class="card">
+            <img src="web-design/project2/screenshot1.jpg" alt="Project 2">
+            <a href="web-design/project2/link.txt" target="_blank">Apskatīt projektu</a>
         </div>
+    </div>
+</section>
 
+<section id="html5">
+    <h2>HTML5 baneri</h2>
+    <div class="grid">
+        <a href="html5-banners/demo-banner/index.html" target="_blank" class="card">
+            <img src="assets/images/placeholder.jpg" alt="HTML5 Banner Demo">
+            <p>HTML5 Demo Banner</p>
+        </a>
+    </div>
+</section>
+
+<section id="animation">
+    <h2>2D animācija</h2>
+    <video controls class="video-demo">
+        <source src="2d-animation/anim-demo.mp4" type="video/mp4">
+    </video>
+</section>
+
+<section id="banners">
+    <h2>GIF / Video baneri</h2>
+    <div class="grid">
+        <img src="assets/gifs/banner-demo.gif" alt="GIF Banner Demo">
+        <video controls>
+            <source src="assets/videos/anim-demo.mp4" type="video/mp4">
+        </video>
     </div>
 </section>
 
 </main>
 
 <footer>
-    <p>© Edijs — 2026</p>
+    <p>© Edijs Gredzens</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
