@@ -250,6 +250,53 @@ h2 {
     opacity: 1;
 }
 
+.animation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.anim-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.anim-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+/* Hover tumšošana */
+.anim-item:hover img {
+    filter: brightness(0.6);
+}
+
+/* Play pogas overlay */
+.play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 50%;
+    clip-path: polygon(35% 25%, 75% 50%, 35% 75%);
+    transition: background 0.3s ease;
+}
+
+.anim-item:hover .play-icon {
+    background: rgba(255,255,255,1);
+}
+
 footer {
     text-align: center;
     padding: 20px;
