@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Demo HTML5 Banner</title>
+    <link rel="stylesheet" href="banner.css">
+</head>
+<body>
+<div class="banner">
+    <div class="text">Special Offer</div>
+    <button class="cta">Learn More</button>
+</div>
+<script src="banner.js"></script>
+</body>
+</html>
