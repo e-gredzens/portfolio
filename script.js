@@ -86,7 +86,7 @@ function openAnimModal(index) {
     animImage.style.display = 'none';
     animIframe.style.display = 'none';
 
-   if (type === 'html') {
+if (type === 'html') {
 
     const w = animItems[index].getAttribute('data-width');
     const h = animItems[index].getAttribute('data-height');
@@ -97,21 +97,23 @@ function openAnimModal(index) {
     animIframe.src = src;
     animIframe.style.display = 'block';
     setTimeout(() => animIframe.classList.add('show'), 20);
+
+} else if (src.endsWith('.mp4')) {
+
+    animVideo.src = src;
+    animVideo.style.display = 'block';
+    setTimeout(() => {
+        animVideo.classList.add('show');
+        animVideo.play();
+    }, 20);
+
+} else {
+
+    animImage.src = src;
+    animImage.style.display = 'block';
+    setTimeout(() => animImage.classList.add('show'), 20);
+
 }
-
-    } else if (src.endsWith('.mp4')) {
-        animVideo.src = src;
-        animVideo.style.display = 'block';
-        setTimeout(() => {
-            animVideo.classList.add('show');
-            animVideo.play();
-        }, 20);
-
-    } else {
-        animImage.src = src;
-        animImage.style.display = 'block';
-        setTimeout(() => animImage.classList.add('show'), 20);
-    }
 
     animModal.style.display = 'block';
 }
