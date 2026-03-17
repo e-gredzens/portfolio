@@ -75,4 +75,85 @@ document.addEventListener('keydown', e => {
     }
 });
 
+const animModal = document.getElementById('anim-modal');
+const animClose = document.getElementById('anim-close');
+const animPrev = document.getElementById('anim-prev');
+const animNext = document.getElementById('anim-next');
+const animVideo = document.getElementById('anim-video');
+const animImage = document.getElementById('anim-image');
+
+const animItems = Array.from(document.querySelectorAll('.anim-item'));
+let animIndex = 0;
+
+function openAnimModal(index) {
+    animIndex = index;
+    const src = animItems[index].getAttribute('data-full');
+
+    animVideo.pause();
+    animVideo.classList.remove('show');
+    animImage.classList.remove('show');
+
+    if (src.endsWith('.mp4')) {
+        animVideo.src = src;
+        animVideo.style.display = 'block';
+        animImage.style.display = 'none';
+
+        setTimeout(() => animVideo.classList.add('show'), 20);
+    } else {
+        animImage.src = src;
+        animImage.style.display = 'block';
+        animVideo.style.display = 'none';
+
+        setTimeout(() => animImage.classList.add('show'), 20);
+    }
+
+    animModal.style.display = 'block';
+}
+
+animItems.forEach((item, index) => {
+    item.addEventListener('click', () => openAnimModal(index));
+});
+
+animClose.addEventListener('click', () => {
+    animModal.style.display = 'none';
+    animVideo.pause();
+});
+
+animModal.addEventListener('click', e => {
+    if (e.target === animModal) {
+        animModal.style.display = 'none';
+        animVideo.pause();
+    }
+});
+
+// Next / Prev
+animNext.addEventListener('click', () => {
+    animIndex = (animIndex + 1) % animItems.length;
+    openAnimModal(animIndex);
+});
+
+animPrev.addEventListener('click', () => {
+    animIndex = (animIndex - 1 + animItems.length) % animItems.length;
+    openAnimModal(animIndex);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+    if (animModal.style.display !== 'block') return;
+
+    if (e.key === 'ArrowRight') {
+        animIndex = (animIndex + 1) % animItems.length;
+        openAnimModal(animIndex);
+    }
+
+    if (e.key === 'ArrowLeft') {
+        animIndex = (animIndex - 1 + animItems.length) % animItems.length;
+        openAnimModal(animIndex);
+    }
+
+    if (e.key === 'Escape') {
+        animModal.style.display = 'none';
+        animVideo.pause();
+    }
+});
 
