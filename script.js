@@ -9,7 +9,6 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-
 /* ============================
    LOGO MODAL
 ============================ */
