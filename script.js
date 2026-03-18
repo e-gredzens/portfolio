@@ -190,5 +190,46 @@ document.addEventListener("touchstart", e => {
 });
 
 document.addEventListener("touchend", e => {
-    touch
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+});
 
+
+/* ============================
+   ELEMENTU REĢISTRĒŠANA
+============================ */
+
+/*
+   Visi elementi, kas atver modāli, izmanto klasi:
+   .modal-item
+
+   Un tiem jābūt atribūtiem:
+   data-full="pilnais fails"
+   data-type="image | video | html"
+*/
+
+modalItems = Array.from(document.querySelectorAll(".modal-item"));
+
+modalItems.forEach((item, index) => {
+    item.addEventListener("click", () => openUniversalModal(index));
+});
+
+/* ============================
+   SCROLL UP
+============================ */
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+        scrollBtn.classList.add("show");
+        scrollBtn.classList.remove("hide");
+    } else {
+        scrollBtn.classList.add("hide");
+        scrollBtn.classList.remove("show");
+    }
+});
+
+scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
