@@ -73,6 +73,11 @@ nav a {
     font-weight: bold;
 }
 
+nav a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
 /* ============================
    MAIN LAYOUT
 ============================ */
