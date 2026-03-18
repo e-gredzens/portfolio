@@ -154,10 +154,31 @@ h2 {
     gap: 20px;
 }
 
-/* Desktop — 5 logos per row */
+/* LOGO — 5 kolonnas */
 @media (min-width: 1200px) {
-    #logos .grid {
+    .grid-logos {
         grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* WEB — 3 kolonnas */
+@media (min-width: 1200px) {
+    .grid-web {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ANIMĀCIJA — 4 kolonnas */
+@media (min-width: 1200px) {
+    .grid-animation {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* CITI DARBI — 5 kolonnas */
+@media (min-width: 1200px) {
+    .grid-other {
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
