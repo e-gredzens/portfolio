@@ -11,179 +11,130 @@ document.querySelectorAll('nav a').forEach(link => {
 
 
 /* ============================
-   LOGO MODAL
+   UNIVERSĀLAIS MODĀLIS
 ============================ */
-const logoModal = document.getElementById('modal');
-const logoModalImg = document.getElementById('modal-img');
-const logoModalClose = document.getElementById('modal-close');
-const logoModalPrev = document.getElementById('modal-prev');
-const logoModalNext = document.getElementById('modal-next');
 
-const logoItems = Array.from(document.querySelectorAll('.logo-item'));
-let logoIndex = 0;
+/* Elementi */
+const modal = document.getElementById('universal-modal');
+const modalClose = modal.querySelector('.modal-close');
+const modalPrev = modal.querySelector('.modal-prev');
+const modalNext = modal.querySelector('.modal-next');
 
-function openLogoModal(index) {
-    logoIndex = index;
+const modalImage = document.getElementById('modal-image');
+const modalVideo = document.getElementById('modal-video');
+const modalIframe = document.getElementById('modal-iframe');
 
-    logoModalImg.classList.remove('show');
-    logoModalImg.src = logoItems[index].getAttribute('data-full');
+let modalItems = [];   // visi elementi, kas atver modāli
+let modalIndex = 0;    // pašreizējais elements
 
-    setTimeout(() => logoModalImg.classList.add('show'), 20);
 
-    logoModal.style.display = 'block';
+/* ============================
+   MODĀĻA ATVĒRŠANA
+============================ */
+function openUniversalModal(index) {
+    modalIndex = index;
+
+    const item = modalItems[index];
+    const type = item.dataset.type || "image";
+    const src = item.dataset.full;
+
+    // Paslēpjam visu
+    modalImage.style.display = "none";
+    modalVideo.style.display = "none";
+    modalIframe.style.display = "none";
+
+    modalImage.classList.remove("show");
+    modalVideo.classList.remove("show");
+    modalIframe.classList.remove("show");
+
+    // Attēls
+    if (type === "image") {
+        modalImage.src = src;
+        modalImage.style.display = "block";
+        setTimeout(() => modalImage.classList.add("show"), 20);
+    }
+
+    // Video
+    else if (type === "video") {
+        modalVideo.src = src;
+        modalVideo.style.display = "block";
+        setTimeout(() => {
+            modalVideo.classList.add("show");
+            modalVideo.play();
+        }, 20);
+    }
+
+    // HTML5 baneris (iframe)
+    else if (type === "html") {
+        modalIframe.src = src;
+
+        if (item.dataset.width) modalIframe.style.width = item.dataset.width + "px";
+        if (item.dataset.height) modalIframe.style.height = item.dataset.height + "px";
+
+        modalIframe.style.display = "block";
+        setTimeout(() => modalIframe.classList.add("show"), 20);
+    }
+
+    modal.style.display = "flex";
 }
 
-logoItems.forEach((item, index) => {
-    item.addEventListener('click', () => openLogoModal(index));
-});
 
-logoModalClose.addEventListener('click', () => {
-    logoModal.style.display = 'none';
-});
+/* ============================
+   MODĀĻA AIZVĒRŠANA
+============================ */
+function closeUniversalModal() {
+    modal.style.display = "none";
+    modalVideo.pause();
+}
 
-logoModal.addEventListener('click', e => {
-    if (e.target === logoModal) logoModal.style.display = 'none';
-});
+modalClose.addEventListener("click", closeUniversalModal);
 
-logoModalNext.addEventListener('click', () => {
-    logoIndex = (logoIndex + 1) % logoItems.length;
-    openLogoModal(logoIndex);
-});
-
-logoModalPrev.addEventListener('click', () => {
-    logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
-    openLogoModal(logoIndex);
+/* Aizver uz melnā fona */
+modal.addEventListener("click", e => {
+    if (e.target.classList.contains("modal")) {
+        closeUniversalModal();
+    }
 });
 
 
 /* ============================
-   ANIMATION MODAL
+   BULTIŅAS
 ============================ */
-const animModal = document.getElementById('anim-modal');
-const animClose = document.getElementById('anim-close');
-const animPrev = document.getElementById('anim-prev');
-const animNext = document.getElementById('anim-next');
-
-const animVideo = document.getElementById('anim-video');
-const animImage = document.getElementById('anim-image');
-const animIframe = document.getElementById('anim-iframe');
-
-const animItems = Array.from(document.querySelectorAll('.anim-item'));
-let animIndex = 0;
-
-function openAnimModal(index) {
-    animIndex = index;
-
-    const src = animItems[index].getAttribute('data-full');
-    const type = animItems[index].getAttribute('data-type') || '';
-
-    animVideo.pause();
-    animVideo.classList.remove('show');
-    animImage.classList.remove('show');
-    animIframe.classList.remove('show');
-
-    animVideo.style.display = 'none';
-    animImage.style.display = 'none';
-    animIframe.style.display = 'none';
-
-if (type === 'html') {
-
-    const w = animItems[index].getAttribute('data-width');
-    const h = animItems[index].getAttribute('data-height');
-
-    animIframe.style.width = w + "px";
-    animIframe.style.height = h + "px";
-
-    animIframe.src = src;
-    animIframe.style.display = 'block';
-    setTimeout(() => animIframe.classList.add('show'), 20);
-
-} else if (src.endsWith('.mp4')) {
-
-    animVideo.src = src;
-    animVideo.style.display = 'block';
-    setTimeout(() => {
-        animVideo.classList.add('show');
-        animVideo.play();
-    }, 20);
-
-} else {
-
-    animImage.src = src;
-    animImage.style.display = 'block';
-    setTimeout(() => animImage.classList.add('show'), 20);
-
-}
-
-    animModal.style.display = 'block';
-}
-
-animItems.forEach((item, index) => {
-    item.addEventListener('click', () => openAnimModal(index));
+modalNext.addEventListener("click", () => {
+    modalIndex = (modalIndex + 1) % modalItems.length;
+    openUniversalModal(modalIndex);
 });
 
-animClose.addEventListener('click', () => {
-    animModal.style.display = 'none';
-    animVideo.pause();
-});
-
-animModal.addEventListener('click', e => {
-    if (e.target === logoModal) {
-        animModal.style.display = 'none';
-        animVideo.pause();
-    }
-});
-
-animNext.addEventListener('click', () => {
-    animIndex = (animIndex + 1) % animItems.length;
-    openAnimModal(animIndex);
-});
-
-animPrev.addEventListener('click', () => {
-    animIndex = (animIndex - 1 + animItems.length) % animItems.length;
-    openAnimModal(animIndex);
+modalPrev.addEventListener("click", () => {
+    modalIndex = (modalIndex - 1 + modalItems.length) % modalItems.length;
+    openUniversalModal(modalIndex);
 });
 
 
 /* ============================
-   KEYBOARD NAVIGATION
+   TASTATŪRA
 ============================ */
-document.addEventListener('keydown', e => {
+document.addEventListener("keydown", e => {
+    if (modal.style.display !== "flex") return;
 
-    // Logo modal
-    if (logoModal.style.display === 'block') {
-        if (e.key === 'ArrowRight') {
-            logoIndex = (logoIndex + 1) % logoItems.length;
-            openLogoModal(logoIndex);
-        }
-        if (e.key === 'ArrowLeft') {
-            logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
-            openLogoModal(logoIndex);
-        }
-        if (e.key === 'Escape') {
-            logoModal.style.display = 'none';
-        }
+    if (e.key === "ArrowRight") {
+        modalIndex = (modalIndex + 1) % modalItems.length;
+        openUniversalModal(modalIndex);
     }
 
-    // Animation modal
-    if (animModal.style.display === 'block') {
-        if (e.key === 'ArrowRight') {
-            animIndex = (animIndex + 1) % animItems.length;
-            openAnimModal(animIndex);
-        }
-        if (e.key === 'ArrowLeft') {
-            animIndex = (animIndex - 1 + animItems.length) % animItems.length;
-            openAnimModal(animIndex);
-        }
-        if (e.key === 'Escape') {
-            animModal.style.display = 'none';
-            animVideo.pause();
-        }
+    if (e.key === "ArrowLeft") {
+        modalIndex = (modalIndex - 1 + modalItems.length) % modalItems.length;
+        openUniversalModal(modalIndex);
+    }
+
+    if (e.key === "Escape") {
+        closeUniversalModal();
     }
 });
 
+
 /* ============================
-   ADVANCED SWIPE NAVIGATION
+   SWIPE NAVIGĀCIJA
 ============================ */
 let touchStartX = 0;
 let touchStartY = 0;
@@ -191,81 +142,53 @@ let touchEndX = 0;
 let touchEndY = 0;
 
 function triggerHaptic() {
-    if (navigator.vibrate) {
-        navigator.vibrate(10); // Android
-    }
-    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.haptic) {
-        try { window.webkit.messageHandlers.haptic.postMessage("light"); } catch(e){}
-    }
+    if (navigator.vibrate) navigator.vibrate(10);
 }
 
-function animateSwipe(modal, direction) {
-    modal.classList.remove('modal-swipe-left', 'modal-swipe-right', 'modal-swipe-down');
-    void modal.offsetWidth; // restart animation
+function animateSwipe(direction) {
+    modal.classList.remove("modal-swipe-left", "modal-swipe-right", "modal-swipe-down");
+    void modal.offsetWidth;
     modal.classList.add(direction);
 }
 
 function handleSwipe() {
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
 
-    const modalOpenLogo = logoModal.style.display === 'block';
-    const modalOpenAnim = animModal.style.display === 'block';
+    if (modal.style.display !== "flex") return;
 
-    const activeModal = modalOpenLogo ? logoModal : modalOpenAnim ? animModal : null;
-    if (!activeModal) return;
-
-    /* SWIPE DOWN — close modal */
-    if (deltaY > 80 && Math.abs(deltaX) < 60) {
-        animateSwipe(activeModal, 'modal-swipe-down');
+    // Swipe down → aizvērt
+    if (dy > 80 && Math.abs(dx) < 60) {
+        animateSwipe("modal-swipe-down");
         triggerHaptic();
-        setTimeout(() => {
-            activeModal.style.display = 'none';
-            animVideo.pause();
-        }, 200);
+        setTimeout(closeUniversalModal, 200);
         return;
     }
 
-    /* SWIPE RIGHT — previous */
-    if (deltaX > 80 && Math.abs(deltaY) < 60) {
-        animateSwipe(activeModal, 'modal-swipe-right');
+    // Swipe right → iepriekšējais
+    if (dx > 80 && Math.abs(dy) < 60) {
+        animateSwipe("modal-swipe-right");
         triggerHaptic();
-
-        if (modalOpenLogo) {
-            logoIndex = (logoIndex - 1 + logoItems.length) % logoItems.length;
-            openLogoModal(logoIndex);
-        }
-        if (modalOpenAnim) {
-            animIndex = (animIndex - 1 + animItems.length) % animItems.length;
-            openAnimModal(animIndex);
-        }
+        modalIndex = (modalIndex - 1 + modalItems.length) % modalItems.length;
+        openUniversalModal(modalIndex);
+        return;
     }
 
-    /* SWIPE LEFT — next */
-    if (deltaX < -80 && Math.abs(deltaY) < 60) {
-        animateSwipe(activeModal, 'modal-swipe-left');
+    // Swipe left → nākamais
+    if (dx < -80 && Math.abs(dy) < 60) {
+        animateSwipe("modal-swipe-left");
         triggerHaptic();
-
-        if (modalOpenLogo) {
-            logoIndex = (logoIndex + 1) % logoItems.length;
-            openLogoModal(logoIndex);
-        }
-        if (modalOpenAnim) {
-            animIndex = (animIndex + 1) % animItems.length;
-            openAnimModal(animIndex);
-        }
+        modalIndex = (modalIndex + 1) % modalItems.length;
+        openUniversalModal(modalIndex);
+        return;
     }
 }
 
-document.addEventListener('touchstart', e => {
+document.addEventListener("touchstart", e => {
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
 });
 
-document.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-});
-
+document.addEventListener("touchend", e => {
+    touch
 
