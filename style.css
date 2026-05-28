@@ -23,22 +23,22 @@ header {
 /* Top contact bar */
 .topbar {
     background: #f5f5f5;
-    padding: 8px 0;
+    padding: 12px 0;
 }
 
 .topbar-content {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 50px;
 }
 
 .topbar-content a {
     color: #000;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 60px;
 }
 
 .topbar-content a:hover {
@@ -54,10 +54,7 @@ header {
     flex-direction: column;   /* 3 rindas */
     align-items: center;      /* centrēts */
     gap: 10px;                /* neliels atstatums */
-    padding: 10px 0;
-    }
-.topbar-content a {
-        font-size: 16px;
+    padding: 0;
     }
 }
 
@@ -68,7 +65,7 @@ header {
 nav ul {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     padding: 15px;
     list-style: none;
     background: #fafafa;
