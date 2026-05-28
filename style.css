@@ -4,9 +4,46 @@ html, body {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background: #f7f7f7;
     color: #222;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 15px 0;
+}
+
+h1 {
+    font-size: 42px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 32px;
+    margin-top: 50px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p, a, li, span, button, input {
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #000;
 }
 
 /* ============================
@@ -36,6 +73,7 @@ header {
     color: #000;
     text-decoration: none;
     font-size: 14px;
+    font-weight: 500;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -75,8 +113,11 @@ nav ul {
 
 nav a {
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
     color: #333;
-    font-weight: bold;
 }
 
 nav a:hover {
@@ -127,7 +168,8 @@ h2 {
 
 #about p {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 .cv-button {
@@ -205,6 +247,7 @@ h2 {
     margin: 0;
     font-size: 14px;
     text-align: center;
+    font-weight: 500;
     color: #444;
 }
 
