@@ -301,11 +301,28 @@
     <p>© Edijs Gredzens</p>
 </footer>
 
-<script src="script.js"></script>
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTopBtn" title="Uz augšu">
+        ↑
+    </button>
 
-<button id="scrollTopBtn" title="Uz augšu">
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
-    
+    <!-- UNIVERSĀLAIS MODĀLIS AR ZOOM -->
+    <div id="universal-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <span class="modal-prev modal-arrow">&#10094;</span>
+        <span class="modal-next modal-arrow">&#10095;</span>
+
+        <div class="modal-content">
+            <div id="modal-zoom-container">
+                <img id="modal-image" alt="">
+            </div>
+            <video id="modal-video" controls></video>
+            <iframe id="modal-iframe"></iframe>
+        </div>
+
+        <div class="swipe-indicator"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
