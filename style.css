@@ -214,12 +214,12 @@ h2 {
 /* ============================
    LOGO HOVER EFFECT
 ============================ */
-.card modal-item img {
+.modal-item img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
 }
 
-.card modal-item:hover img {
+.modal-item:hover img {
     transform: scale(1.05);
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
