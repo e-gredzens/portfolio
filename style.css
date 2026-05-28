@@ -154,7 +154,7 @@ h2 {
     gap: 20px;
 }
 
-/* LOGO — 5 kolonnas */
+/* LOGO — 6 kolonnas */
 @media (min-width: 1200px) {
     .grid-logos {
         grid-template-columns: repeat(6, 1fr);
@@ -214,12 +214,12 @@ h2 {
 /* ============================
    LOGO HOVER EFFECT
 ============================ */
-.logo-item img {
+.card modal-item img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
 }
 
-.logo-item:hover img {
+.card modal-item:hover img {
     transform: scale(1.05);
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
@@ -426,4 +426,43 @@ footer {
     max-height: 100%;
     transform-origin: center center;
     transition: transform 0.1s ease-out;
+}
+
+/* ============================ 
+   SCROLL TO TOP
+============================ */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+
+    display: flex;              /* vienmēr aizņem vietu */
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    opacity: 0;                 /* sākumā neredzams */
+    transform: translateY(20px);
+    pointer-events: none;       /* nespaidojams, kad neredzams */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#scrollTopBtn.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#scrollTopBtn.hide {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
 }
