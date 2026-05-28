@@ -53,6 +53,19 @@ header {
     font-size: 14px;
 }
 
+@media (max-width: 768px) {
+.topbar-content {
+    flex-direction: column;   /* 3 rindas */
+    align-items: center;      /* centrēts */
+    gap: 10px;                /* neliels atstatums */
+    padding: 10px 0;
+    }
+.topbar-content a {
+        font-size: 16px;
+    }
+}
+
+
 /* ============================
    NAVIGATION
 ============================ */
