@@ -136,6 +136,87 @@ main {
 }
 
 /* ============================
+   HERO SECTION
+============================ */
+.hero {
+    padding: 120px 20px 100px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Premium serif virsraksts */
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #111;
+    margin-bottom: 10px;
+}
+
+/* Mazāks serif akcenta virsraksts */
+.hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+/* Inter — tīrs, UX-friendly teksts */
+.hero-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 35px;
+}
+
+/* CTA poga */
+.hero-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.hero-button:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+/* Mobilā adaptācija */
+@media (max-width: 768px) {
+    .hero {
+        padding: 80px 20px 70px;
+    }
+
+    .hero-title {
+        font-size: 46px;
+    }
+
+    .hero-subtitle {
+        font-size: 22px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+}
+
+/* ============================
    ABOUT SECTION
 ============================ */
 #about {
