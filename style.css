@@ -12,7 +12,7 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     color: #111;
     margin: 0 0 15px 0;
@@ -26,6 +26,7 @@ h1 {
 h2 {
     font-size: 32px;
     margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 h3 {
@@ -134,11 +135,6 @@ main {
     padding: 30px 20px;
 }
 
-h2 {
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-
 /* ============================
    ABOUT SECTION
 ============================ */
@@ -185,7 +181,8 @@ h2 {
 }
 
 .cv-button:hover {
-    background: #555;
+    background: #000;
+    color: #fff;
 }
 
 .cv-button i {
