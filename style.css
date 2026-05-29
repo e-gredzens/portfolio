@@ -177,26 +177,85 @@ main {
     margin: 0 auto 35px;
 }
 
-/* CTA poga */
-.hero-button {
-    display: inline-block;
-    padding: 14px 32px;
-    background: #111;
-    color: #fff;
+/* Pogas konteineris */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 35px;
+}
+
+/* Universālais pamatstils */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 14px 28px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 16px;
+
     border-radius: 6px;
     text-decoration: none;
     transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 0 0 rgba(0,0,0,0); /* sākumā bez ēnas */
 }
 
-.hero-button:hover {
-    background: #000;
+/* Primārā — melna */
+.btn-primary {
+    background: #111;
     color: #fff;
-    transform: translateY(-2px);              /* paceļam pogu */
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);  /* ēna tikai uz leju */
+}
+
+.btn-primary:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+/* Sekundārā — outline */
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #111;
+    color: #111;
+}
+
+.btn-secondary:hover {
+    background: #111;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* WhatsApp — zaļa */
+.btn-whatsapp {
+    background: #25D366;
+    color: #fff;
+}
+
+.btn-whatsapp:hover {
+    background: #1EBE59;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.btn-whatsapp i {
+    font-size: 18px;
+}
+
+/* Mobilā versija — vertikāli */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
 }
 
 /* Mobilā adaptācija */
