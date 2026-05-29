@@ -138,9 +138,22 @@ main {
    HERO SECTION
 ============================ */
 .hero {
+    width: 100%;
+    background: #fff url('data:image/svg+xml;base64,...') repeat;
     padding: 120px 20px 100px;
-    background: #ffffff;
     text-align: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,0,0,0.06), transparent 70%);
+    transform: translateX(-50%);
+    z-index: 0;
 }
 
 .hero-inner {
