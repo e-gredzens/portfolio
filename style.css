@@ -1,3 +1,7 @@
+/* ============================
+    BASIC STYLE 
+============================ */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -48,8 +52,9 @@ a:hover {
 }
 
 /* ============================
-   HEADER & TOPBAR
+    HEADER 
 ============================ */
+
 header {
     text-align: center;
     padding: 12px 0;
@@ -72,7 +77,10 @@ header {
     }
 }
 
-/* HAMBURGER */
+/* ============================ 
+    HAMBURGER 
+============================ */
+
 .hamburger {
     width: 32px;
     height: 26px;
@@ -93,14 +101,27 @@ header {
     transition: 0.3s ease;
 }
 
-/* Tikai mobilajam */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
     }
 }
 
-/* SLIDE-IN MENU */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+
+/* ============================ 
+    SLIDE-IN MENU 
+============================ */
+
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -133,7 +154,9 @@ header {
     color: #000;
 }
 
-/* Top contact bar */
+/* =========================== 
+    TOP CONTACT BAR 
+============================*/
 .topbar {
     background: #f5f5f5;
     padding: 12px 0;
@@ -173,8 +196,9 @@ header {
 }
 
 /* ============================
-   NAVIGATION
+    NAVIGATION
 ============================ */
+
 nav ul {
     display: flex;
     justify-content: center;
@@ -201,8 +225,9 @@ nav a:hover {
 }
 
 /* ============================
-   MAIN LAYOUT
+    MAIN LAYOUT
 ============================ */
+
 main {
     max-width: 1100px;
     margin: auto;
@@ -210,7 +235,7 @@ main {
 }
 
 /* ============================
-   HERO SECTION
+    HERO SECTION
 ============================ */
 .hero {
     width: 100%;
@@ -297,8 +322,9 @@ main {
 
 .btn-primary:hover {
     background: #000;
+    color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 /* Sekundārā — outline */
@@ -312,7 +338,7 @@ main {
     background: #111;
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 /* WhatsApp — zaļa */
@@ -324,7 +350,7 @@ main {
 .btn-whatsapp:hover {
     background: #1EBE59;
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .btn-whatsapp i {
@@ -336,7 +362,7 @@ main {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
     }
 
     .btn {
@@ -366,8 +392,9 @@ main {
 }
 
 /* ============================
-   ABOUT SECTION
+    ABOUT SECTION
 ============================ */
+
 #about {
     margin-top: 45px;
 }
@@ -421,8 +448,9 @@ main {
 }
 
 /* ============================
-   GRID LAYOUTS
+    GRID LAYOUTS
 ============================ */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -488,8 +516,9 @@ main {
 }
 
 /* ============================
-   LOGO HOVER EFFECT
+    LOGO HOVER EFFECT
 ============================ */
+
 .modal-item img {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
@@ -501,8 +530,9 @@ main {
 }
 
 /* ============================
-   ANIMATION GRID
+    ANIMATION GRID
 ============================ */
+
 .animation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -550,8 +580,9 @@ main {
 }
 
 /* ============================
-   UNIVERSĀLAIS MODĀLIS
+    UNIVERSĀLAIS MODĀLIS
 ============================ */
+
 .modal {
     position: fixed;
     inset: 0;
@@ -594,8 +625,9 @@ main {
 .modal-next { right: 20px; }
 
 /* ============================
-   MODĀĻA SATURS
+    MODĀĻA SATURS
 ============================ */
+
 .modal-content {
     display: flex;
     justify-content: center;
@@ -632,8 +664,9 @@ main {
 }
 
 /* ============================
-   SWIPE ANIMĀCIJAS
+    SWIPE ANIMĀCIJAS
 ============================ */
+
 .modal-swipe-left { animation: swipeLeft 0.25s ease; }
 .modal-swipe-right { animation: swipeRight 0.25s ease; }
 .modal-swipe-down { animation: swipeDown 0.25s ease; }
@@ -654,8 +687,9 @@ main {
 }
 
 /* ============================
-   SWIPE INDIKATORS
+    SWIPE INDIKATORS
 ============================ */
+
 .swipe-indicator {
     position: absolute;
     bottom: 25px;
@@ -669,8 +703,9 @@ main {
 }
 
 /* ============================
-   FOOTER
+    FOOTER
 ============================ */
+
 footer {
     text-align: center;
     padding: 20px;
@@ -680,8 +715,9 @@ footer {
 }
 
 /* ============================ 
-   ZOOM KONTEINERIS 
+    ZOOM KONTEINERIS 
 ============================ */
+
 #modal-zoom-container {
     max-width: 90%;
     max-height: 80vh;
@@ -705,8 +741,9 @@ footer {
 }
 
 /* ============================ 
-   SCROLL TO TOP
+    SCROLL TO TOP
 ============================ */
+
 #scrollTopBtn {
     position: fixed;
     bottom: 25px;
