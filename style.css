@@ -5,6 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden; 
 }
 
 body {
@@ -702,8 +703,9 @@ main {
     height: 6px;
     background: rgba(255,255,255,0.4);
     border-radius: 3px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     margin: auto;
 }
 
