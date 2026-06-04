@@ -1,6 +1,7 @@
 /* ============================
-   Smooth scroll navigation
+Smooth scroll navigation
 ============================ */
+
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
@@ -9,8 +10,10 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
+/* ============================ 
+UNIVERSĀLAIS MODĀLIS 
+============================ */
 
-/* ===== UNIVERSĀLAIS MODĀLIS ===== */
 const modal = document.getElementById('universal-modal');
 const modalClose = modal.querySelector('.modal-close');
 const modalPrev = modal.querySelector('.modal-prev');
@@ -24,7 +27,10 @@ const zoomContainer = document.getElementById('modal-zoom-container');
 let modalItems = Array.from(document.querySelectorAll(".modal-item"));
 let modalIndex = 0;
 
-/* ZOOM MAINĪGIE */
+/* ============================ 
+ZOOM MAINĪGIE 
+============================ */
+
 let currentScale = 1;
 let minScale = 1;
 let maxScale = 4;
@@ -47,7 +53,10 @@ function resetZoom() {
     applyZoomTransform();
 }
 
-/* ATVĒRŠANA */
+/* ============================ 
+ATVĒRŠANA 
+============================ */
+
 function openUniversalModal(index) {
     modalIndex = index;
     const item = modalItems[index];
@@ -85,7 +94,10 @@ function openUniversalModal(index) {
     modal.style.display = "flex";
 }
 
-/* AIZVĒRŠANA */
+/* ============================ 
+AIZVĒRŠANA 
+============================ */
+
 function closeUniversalModal() {
     modal.style.display = "none";
     modalVideo.pause();
@@ -96,7 +108,10 @@ modal.addEventListener("click", e => {
     if (e.target.classList.contains("modal")) closeUniversalModal();
 });
 
-/* BULTIŅAS */
+/* ============================ 
+BULTIŅAS 
+============================ */
+
 modalNext.addEventListener("click", () => {
     modalIndex = (modalIndex + 1) % modalItems.length;
     openUniversalModal(modalIndex);
@@ -106,7 +121,10 @@ modalPrev.addEventListener("click", () => {
     openUniversalModal(modalIndex);
 });
 
-/* TASTATŪRA */
+/* ============================ 
+TASTATŪRA 
+============================ */
+
 document.addEventListener("keydown", e => {
     if (modal.style.display !== "flex") return;
     if (e.key === "ArrowRight") {
@@ -120,7 +138,10 @@ document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeUniversalModal();
 });
 
-/* SWIPE */
+/* ============================ 
+SWIPE 
+============================ */
+
 let touchStartX = 0, touchStartY = 0, touchEndX = 0, touchEndY = 0;
 
 function triggerHaptic() {
@@ -169,7 +190,10 @@ document.addEventListener("touchend", e => {
     handleSwipe();
 });
 
-/* ZOOM — DESKTOP SCROLL */
+/* ============================ 
+ZOOM — DESKTOP SCROLL 
+============================ */
+
 zoomContainer.addEventListener("wheel", e => {
     e.preventDefault();
     const delta = -e.deltaY;
@@ -180,7 +204,10 @@ zoomContainer.addEventListener("wheel", e => {
     applyZoomTransform();
 }, { passive: false });
 
-/* ZOOM — DESKTOP DRAG */
+/* ============================ 
+ZOOM — DESKTOP DRAG 
+============================ */
+
 zoomContainer.addEventListener("mousedown", e => {
     if (currentScale === 1) return;
     isPanning = true;
@@ -199,7 +226,10 @@ document.addEventListener("mouseup", () => {
     zoomContainer.classList.remove("grabbing");
 });
 
-/* ZOOM — DESKTOP DOUBLE CLICK */
+/* ============================ 
+ZOOM — DESKTOP DOUBLE CLICK
+============================ */
+
 zoomContainer.addEventListener("dblclick", () => {
     if (currentScale === 1) {
         currentScale = 2;
@@ -211,7 +241,10 @@ zoomContainer.addEventListener("dblclick", () => {
     applyZoomTransform();
 });
 
-/* ZOOM — MOBILE DOUBLE TAP */
+/* ============================ 
+ZOOM — MOBILE DOUBLE TAP 
+============================ */
+
 zoomContainer.addEventListener("touchend", e => {
     const now = Date.now();
     if (now - lastTapTime < 300) {
@@ -227,7 +260,10 @@ zoomContainer.addEventListener("touchend", e => {
     lastTapTime = now;
 });
 
-/* ZOOM — MOBILE PINCH + PAN */
+/* ============================
+ZOOM — MOBILE PINCH + PAN 
+============================ */
+
 zoomContainer.addEventListener("touchstart", e => {
     if (e.touches.length === 2) {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -265,12 +301,18 @@ zoomContainer.addEventListener("touchend", e => {
     }
 });
 
-/* ELEMENTU REĢISTRĒŠANA */
+/* ============================ 
+ELEMENTU REĢISTRĒŠANA
+============================ */
+
 modalItems.forEach((item, index) => {
     item.addEventListener("click", () => openUniversalModal(index));
 });
 
-/* SCROLL TO TOP */
+/* ============================
+SCROLL TO TOP 
+============================ */
+
 const scrollBtn = document.getElementById("scrollTopBtn");
 window.addEventListener("scroll", () => {
     if (window.scrollY > 400) {
@@ -284,3 +326,27 @@ window.addEventListener("scroll", () => {
 scrollBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+/* ============================ 
+HAMBURGER
+============================ */
+
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+    mobileMenu.classList.toggle("open");
+});
+
+// Aizveram menu, kad uzspiež uz linka
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+    });
+});
+
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("open");
+});
+
