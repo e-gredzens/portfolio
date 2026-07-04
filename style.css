@@ -792,3 +792,36 @@ footer {
     transform: translateY(20px);
     pointer-events: none;
 }
+
+/* ============================ 
+    DIVIDER
+============================ */
+    
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Mobilais (noklusējums) */
+  margin: 2rem auto; /* Atstarpes augšā/apakšā un centrēšana */
+}
+
+/* Desktop ekrāniem */
+@media (min-width: 768px) {
+  .divider {
+    width: 25%; 
+  }
+}
+
+.divider-line {
+  flex: 1; /* Līnijas aizņem visu atlikušo vietu */
+  height: 1px; /* Līnijas biezums */
+  background-color: #333; /* Līnijas krāsa */
+}
+
+.divider-icon {
+  padding: 0 15px; /* Atstarpe ap ikonu */
+  color: #333; /* Ikonas krāsa */
+  font-size: 1.2rem; /* Ikonas izmērs */
+  display: flex;
+  align-items: center;
+}
