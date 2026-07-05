@@ -53,6 +53,10 @@ a:hover {
     color: #000;
 }
 
+i {
+    margin-right: 8px; /* Atstarpe starp ikonu un tekstu */
+}
+
 /* ============================
     HEADER 
 ============================ */
@@ -307,11 +311,6 @@ main {
     border-radius: 6px;
     text-decoration: none;
     transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.btn i {
-    margin-right: 8px; /* Atstarpe starp ikonu un tekstu */
-    font-size: 18px;
 }
 
 /* Primārā — melna */
