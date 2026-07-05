@@ -247,7 +247,7 @@ main {
 .hero {
     width: 100%;
     background: #f2f2f2 /*url('data:image/svg+xml;base64,...') repeat*/;
-    padding: 120px 0px 100px;
+    padding: 120px 0px 100px 0px;
     text-align: center;
 }
 
@@ -279,7 +279,7 @@ main {
 .hero-text {
     font-family: 'Inter', sans-serif;
     font-size: 18px;
-    line-height: 1.7;
+    line-height: 1.6;
     color: #555;
     max-width: 700px;
     margin: 0 auto 35px;
@@ -332,6 +332,7 @@ main {
 .btn-secondary:hover {
     background: #111;
     color: #fff;
+    border: 1px solid #111;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
