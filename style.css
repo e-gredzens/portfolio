@@ -636,7 +636,8 @@ main {
         align-items: center;
         gap: 10px;
     }
-
+}
+    
 /* Mobilā adaptācija */
 @media (max-width: 768px) {
     .cta {
