@@ -309,6 +309,12 @@ main {
     transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.btn i {
+  margin-right: 8px; /* Atstarpe starp ikonu un tekstu */
+  font-size: 0.9em;  /* Mazliet samazinām ikonu, lai tā vizuāli nepārsniedz teksta augstumu */
+  opacity: 0.8;      /* Mazliet vājāka krāsa piešķir smalkāku, dizainiskāku izskatu */
+}
+
 /* Primārā — melna */
 .btn-primary {
     background: #111;
