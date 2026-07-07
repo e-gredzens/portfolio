@@ -509,8 +509,8 @@ main {
     font-size: 14px;
     text-align: center;
     font-weight: 500;
-    line-heght: 1.2;
-    color: #444;
+    line-height: 1.2;
+    color: #333;
 }
 
 .card a {
@@ -580,7 +580,6 @@ main {
     height: 60px;
     background: rgba(255,255,255,0.85);
     border-radius: 50%;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
     transition: background 0.3s ease;
 }
