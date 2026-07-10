@@ -43,6 +43,7 @@ h3 {
 
 p, a, li, span, button, input {
     font-family: 'Inter', sans-serif;
+    margin: 0;
 }
 
 a {
