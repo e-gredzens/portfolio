@@ -885,7 +885,7 @@ footer {
   align-items: center;
   justify-content: center;
   width: 100%; /* Mobilais (noklusējums) */
-  margin: 0 auto 2rem auto; /* Atstarpes augšā/apakšā un centrēšana */
+  margin: 1.4rem auto 2rem auto; /* Atstarpes augšā/apakšā un centrēšana */
 }
 
 /* Desktop ekrāniem */
